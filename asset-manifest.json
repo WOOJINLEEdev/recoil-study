@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/recoil-study/static/css/main.e6c13ad2.css",
+    "main.js": "/recoil-study/static/js/main.5c3e77ec.js",
+    "static/js/787.435b7cd2.chunk.js": "/recoil-study/static/js/787.435b7cd2.chunk.js",
+    "index.html": "/recoil-study/index.html",
+    "main.e6c13ad2.css.map": "/recoil-study/static/css/main.e6c13ad2.css.map",
+    "main.5c3e77ec.js.map": "/recoil-study/static/js/main.5c3e77ec.js.map",
+    "787.435b7cd2.chunk.js.map": "/recoil-study/static/js/787.435b7cd2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.5c3e77ec.js"
+  ]
+}
