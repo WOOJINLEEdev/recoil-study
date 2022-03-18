@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { TodoItemTypes, ItemProps } from "types/todo";
 
-const TodoItem = ({ item }: any) => {
+const TodoItem = (item: TodoItemTypes) => {
   return (
     <Item completed={item.completed}>
       <span
@@ -19,10 +20,6 @@ const TodoItem = ({ item }: any) => {
 };
 
 export default TodoItem;
-
-interface ItemProps {
-  completed: boolean;
-}
 
 const Item = styled.li<ItemProps>`
   width: 180px;

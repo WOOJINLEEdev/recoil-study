@@ -48,7 +48,7 @@ const TodoList = () => {
   return (
     <TodoListContainer>
       {list?.map((item: TodoItemTypes) => {
-        return <TodoItem key={String(item.id)} item={item} />;
+        return <TodoItem key={String(item.id)} {...item} />;
       })}
     </TodoListContainer>
   );

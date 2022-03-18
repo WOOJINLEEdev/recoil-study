@@ -1,8 +1,7 @@
-import "./App.css";
-import GlobalStyle from "styles/globalStyle";
-import TodoFilter from "components/TodoFilter";
 import styled from "styled-components";
+import TodoFilter from "components/TodoFilter";
 import TodoList from "components/TodoList";
+import GlobalStyle from "styles/globalStyle";
 
 function App() {
   return (

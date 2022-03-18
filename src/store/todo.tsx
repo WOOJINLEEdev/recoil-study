@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily } from "recoil";
+import { atom, selector } from "recoil";
 import { TodoItemTypes } from "types/todo";
 
 export const todoListState = atom<TodoItemTypes[]>({
@@ -45,11 +45,11 @@ export const secondFilterSelector = selector({
   get: ({ get }) => {
     const todoList = get(todoListInitState);
 
-    const userId = todoList?.map((item: TodoItemTypes) => {
+    const userIds = todoList?.map((item: TodoItemTypes) => {
       return item.userId;
     });
-    const userIdArray = Array.from(new Set(userId));
+    const uniqueUserIds = new Set(userIds);
 
-    return userIdArray;
+    return Array.from(uniqueUserIds);
   },
 });

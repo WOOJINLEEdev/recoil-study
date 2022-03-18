@@ -4,3 +4,7 @@ export interface TodoItemTypes {
   title: string;
   completed: boolean;
 }
+
+export interface ItemProps {
+  completed: boolean;
+}

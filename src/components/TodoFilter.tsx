@@ -20,31 +20,39 @@ const TodoFilter = () => {
   const [secondFilter, setSecondFilter] = useRecoilState(
     todoListSecondFilterState
   );
-  const userIdArray = useRecoilValue(secondFilterSelector);
+  const userIds = useRecoilValue(secondFilterSelector);
 
-  const handleFirstSelect = ({ target }: any) => {
+  const handleFirstSelect = ({
+    target,
+  }: React.ChangeEvent<HTMLSelectElement>) => {
     setFirstFilter({ completed: `${target.value}` });
     setFirstSelected(target.value);
     target.value === "" && setFirstFilter({});
   };
 
-  const handleSecondSelect = ({ target }: any) => {
+  const handleSecondSelect = ({
+    target,
+  }: React.ChangeEvent<HTMLSelectElement>) => {
     setSecondFilter({ userId: `${target.value}` });
     setSecondSelected(target.value);
     target.value === "" && setSecondFilter({});
   };
 
-  function hi() {
+  const handleResetBtn = () => {
     setFirstSelected("");
     setSecondSelected("");
 
     setFirstFilter({});
     setSecondFilter({});
-  }
+  };
 
   return (
     <>
-      <Select name="filter" onChange={handleFirstSelect} value={firstSelected}>
+      <Select
+        name="completion_check"
+        onChange={handleFirstSelect}
+        value={firstSelected}
+      >
         <option value=""> - Option - </option>
         {val.map((item, index) => {
           return (
@@ -56,21 +64,21 @@ const TodoFilter = () => {
       </Select>
 
       <Select
-        name="second"
+        name="user_ids"
         onChange={handleSecondSelect}
         value={secondSelected}
       >
         <option value=""> - userId - </option>
-        {userIdArray?.map((item) => {
+        {userIds?.map((item: number) => {
           return (
-            <option key={item} value={item}>
+            <option key={String(item)} value={item}>
               {item}
             </option>
           );
         })}
       </Select>
 
-      <Button type="button" onClick={() => hi()}>
+      <Button type="button" onClick={handleResetBtn}>
         Reset
       </Button>
     </>
