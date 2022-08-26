@@ -125,6 +125,18 @@ const GlobalStyle = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: #efefef;
+  }
+
+  button, select {
+    cursor: pointer;
+  }
   
   .visually_hidden {
     border: 0;
@@ -136,13 +148,6 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
-  }
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    background: #efefef;
   }
 `;
 

@@ -1,11 +1,12 @@
+import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
+
 import {
   todoListFirstFilterState,
   todoListSecondFilterState,
   secondFilterSelector,
-} from "store/todo";
-import { useState } from "react";
+} from "state/todo";
 
 const TodoFilter = () => {
   const [val, setVal] = useState([
@@ -14,6 +15,7 @@ const TodoFilter = () => {
   ]);
   const [firstSelected, setFirstSelected] = useState("");
   const [secondSelected, setSecondSelected] = useState("");
+
   const [firstFilter, setFirstFilter] = useRecoilState(
     todoListFirstFilterState
   );
@@ -22,23 +24,23 @@ const TodoFilter = () => {
   );
   const userIds = useRecoilValue(secondFilterSelector);
 
-  const handleFirstSelect = ({
+  const handleFirstSelectChange = ({
     target,
-  }: React.ChangeEvent<HTMLSelectElement>) => {
+  }: ChangeEvent<HTMLSelectElement>) => {
     setFirstFilter({ completed: `${target.value}` });
     setFirstSelected(target.value);
     target.value === "" && setFirstFilter({});
   };
 
-  const handleSecondSelect = ({
+  const handleSecondSelectChange = ({
     target,
-  }: React.ChangeEvent<HTMLSelectElement>) => {
+  }: ChangeEvent<HTMLSelectElement>) => {
     setSecondFilter({ userId: `${target.value}` });
     setSecondSelected(target.value);
     target.value === "" && setSecondFilter({});
   };
 
-  const handleResetBtn = () => {
+  const handleResetBtnClick = () => {
     setFirstSelected("");
     setSecondSelected("");
 
@@ -50,13 +52,13 @@ const TodoFilter = () => {
     <>
       <Select
         name="completion_check"
-        onChange={handleFirstSelect}
         value={firstSelected}
+        onChange={handleFirstSelectChange}
       >
         <option value=""> - Option - </option>
         {val.map((item, index) => {
           return (
-            <option key={String(index)} value={item.value}>
+            <option key={`first_option_${index}`} value={item.value}>
               {item.title}
             </option>
           );
@@ -65,20 +67,20 @@ const TodoFilter = () => {
 
       <Select
         name="user_ids"
-        onChange={handleSecondSelect}
+        onChange={handleSecondSelectChange}
         value={secondSelected}
       >
         <option value=""> - userId - </option>
-        {userIds?.map((item: number) => {
+        {userIds?.map((item) => {
           return (
-            <option key={String(item)} value={item}>
+            <option key={`second_option_${item}`} value={item}>
               {item}
             </option>
           );
         })}
       </Select>
 
-      <Button type="button" onClick={handleResetBtn}>
+      <Button type="button" onClick={handleResetBtnClick}>
         Reset
       </Button>
     </>
@@ -88,16 +90,16 @@ const TodoFilter = () => {
 export default TodoFilter;
 
 const Select = styled.select`
-  border: 2px solid #efefef;
-  border-radius: 5px;
   padding: 10px;
   margin: 20px 10px 50px 0;
+  border: 2px solid #efefef;
+  border-radius: 5px;
 `;
 
 const Button = styled.button`
+  padding: 10px;
+  color: #fff;
+  background-color: #333;
   border: 2px solid #efefef;
   border-radius: 5px;
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
 `;

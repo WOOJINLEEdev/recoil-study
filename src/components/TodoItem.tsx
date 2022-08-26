@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { TodoItemTypes, ItemProps } from "types/todo";
 
-const TodoItem = (item: TodoItemTypes) => {
+import { ITodoItem, IItemProps } from "types/todo";
+
+const TodoItem = (item: ITodoItem) => {
   return (
     <Item completed={item.completed}>
       <span
@@ -12,7 +13,7 @@ const TodoItem = (item: TodoItemTypes) => {
         {item.completed === true ? "Completed" : "Not Completed"}
       </span>
 
-      <span> {item.userId}</span>
+      <span>{item.userId}</span>
       <span> Id: {item.id}</span>
       <p>{item.title}</p>
     </Item>
@@ -21,7 +22,7 @@ const TodoItem = (item: TodoItemTypes) => {
 
 export default TodoItem;
 
-const Item = styled.li<ItemProps>`
+const Item = styled.li<IItemProps>`
   width: 180px;
   padding: 20px 10px;
   margin-right: 60px;

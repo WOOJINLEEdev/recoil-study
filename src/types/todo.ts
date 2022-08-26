@@ -1,10 +1,10 @@
-export interface TodoItemTypes {
+export interface ITodoItem {
   userId: number;
   id: number;
   title: string;
   completed: boolean;
 }
 
-export interface ItemProps {
+export interface IItemProps {
   completed: boolean;
 }

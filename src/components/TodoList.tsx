@@ -2,19 +2,21 @@ import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import axios from "axios";
 import styled from "styled-components";
+
 import TodoItem from "components/TodoItem";
-import { TodoItemTypes } from "types/todo";
+
 import {
   todoListState,
   filteredTodoListState,
   todoListInitState,
-} from "store/todo";
+} from "state/todo";
+import { ITodoItem } from "types/todo";
 
 const TodoList = () => {
   const [loading, setLoading] = useState(false);
   const [init, setInit] = useState(true);
 
-  const [list, setList] = useRecoilState<TodoItemTypes[]>(todoListState);
+  const [list, setList] = useRecoilState<ITodoItem[]>(todoListState);
   const [initList, setInitList] = useRecoilState(todoListInitState);
   const queryString = useRecoilValue(filteredTodoListState);
 
@@ -47,8 +49,8 @@ const TodoList = () => {
 
   return (
     <TodoListContainer>
-      {list?.map((item: TodoItemTypes) => {
-        return <TodoItem key={String(item.id)} {...item} />;
+      {list?.map((item: ITodoItem) => {
+        return <TodoItem key={`todo_item_${item.id}`} {...item} />;
       })}
     </TodoListContainer>
   );
